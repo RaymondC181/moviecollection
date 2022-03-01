@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -179,14 +180,33 @@ public class MovieCollection
 
       if (name.contains(searchTerm))
       {
-        String[] movieFromCSV = name.split("|");
+        String[] movieFromCSV = name.split("\\|");
         int i = 0;
-        while(!Objects.equals(movieFromCSV[i], searchTerm))
+        if(movieFromCSV[i].contains(searchTerm))
         {
+          results.add(movieFromCSV[i]);
           i++;
         }
-        results.add(movieFromCSV[i]);
       }
+      Collections.sort(results);
+
+
+
+
+
+
+
+      for (int i = 0; i < results.size(); i++)
+      {
+        String keyWord = results.get(i);
+
+        // this will print index 0 as choice 1 in the results list; better for user!
+        int choiceNum = i + 1;
+
+        System.out.println("" + choiceNum + ". " + keyWord);
+      }
+
+
     }
 
 
@@ -247,12 +267,14 @@ public class MovieCollection
   
   private void listGenres()
   {
-    /* TASK 5: IMPLEMENT ME! */
+
+
+
   }
 
   private void listHighestRated()
   {
-    /* TASK 6: IMPLEMENT ME! */
+
   }
 
   private void listHighestRevenue()
